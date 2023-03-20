@@ -1,7 +1,7 @@
-From 2e7ed48a96a5245a9cd319d33a71bb56883416a9 Mon Sep 17 00:00:00 2001
+From cc5d0afa6903429c9869c1f2c6b3aa0cd11a568b Mon Sep 17 00:00:00 2001
 From: Chris Morgan <macromorgan@hotmail.com>
 Date: Mon, 13 Feb 2023 16:27:38 -0600
-Subject: [PATCH 02/11] rockchip: rk3568: add boot device detection
+Subject: [PATCH 01/11] rockchip: rk3568: add boot device detection
 
 Enable spl to detect which device it was booted from.
 

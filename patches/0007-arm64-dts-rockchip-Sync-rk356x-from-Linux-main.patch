@@ -1,7 +1,7 @@
-From ba266b1263e38ff51f7afd944b4ed88f34469a25 Mon Sep 17 00:00:00 2001
+From f1da29eea6352d05b9bbae88e74bdac1b0adc549 Mon Sep 17 00:00:00 2001
 From: Chris Morgan <macromorgan@hotmail.com>
 Date: Mon, 13 Feb 2023 16:27:37 -0600
-Subject: [PATCH 08/11] arm64: dts: rockchip: Sync rk356x from Linux main
+Subject: [PATCH 07/11] arm64: dts: rockchip: Sync rk356x from Linux main
 
 Sync rk3566 and rk3568 from the mainline Linux kernel (6.2-rc2 as of
 this writing).

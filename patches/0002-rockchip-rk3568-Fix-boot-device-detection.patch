@@ -1,7 +1,7 @@
-From cb648264bc836e008257fe37a9c722c820c651e3 Mon Sep 17 00:00:00 2001
+From 03a9e6362602729d055f0242b58ea95a263706d9 Mon Sep 17 00:00:00 2001
 From: Jonas Karlman <jonas@kwiboo.se>
 Date: Tue, 14 Mar 2023 00:38:23 +0000
-Subject: [PATCH 03/11] rockchip: rk3568: Fix boot device detection
+Subject: [PATCH 02/11] rockchip: rk3568: Fix boot device detection
 
 The boot source node path for emmc is using the old sdhci name.
 Replace with correct mmc name and also add same-as-spl to boot order.
@@ -15,10 +15,10 @@ Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
  2 files changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm/dts/rk356x-u-boot.dtsi b/arch/arm/dts/rk356x-u-boot.dtsi
-index 2e358c470d..5a310d38d9 100644
+index ccb8db0001..ddc24b5351 100644
 --- a/arch/arm/dts/rk356x-u-boot.dtsi
 +++ b/arch/arm/dts/rk356x-u-boot.dtsi
-@@ -10,7 +10,7 @@
+@@ -12,7 +12,7 @@
  	};
  
  	chosen {
@@ -27,7 +27,7 @@ index 2e358c470d..5a310d38d9 100644
  	};
  
  	dmc: dmc {
-@@ -40,12 +40,14 @@
+@@ -42,12 +42,14 @@
  	status = "okay";
  };
  

@@ -1,7 +1,7 @@
-From 1b647e9dad68879b9cfa7b5620f6b98fb680a082 Mon Sep 17 00:00:00 2001
+From 17bd71dd9cfdfba079f0f8140283fc88e27f23e2 Mon Sep 17 00:00:00 2001
 From: Jagan Teki <jagan@amarulasolutions.com>
 Date: Fri, 17 Feb 2023 17:28:35 +0530
-Subject: [PATCH 07/11] dt-bindings: rockchip: Sync rockchip, vop2.h from Linux
+Subject: [PATCH 06/11] dt-bindings: rockchip: Sync rockchip, vop2.h from Linux
 
 Sync rockchip,vop2.h from linux-next, and the last commit is
 
