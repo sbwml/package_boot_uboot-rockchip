@@ -1,0 +1,62 @@
+From cb648264bc836e008257fe37a9c722c820c651e3 Mon Sep 17 00:00:00 2001
+From: Jonas Karlman <jonas@kwiboo.se>
+Date: Tue, 14 Mar 2023 00:38:23 +0000
+Subject: [PATCH 03/11] rockchip: rk3568: Fix boot device detection
+
+The boot source node path for emmc is using the old sdhci name.
+Replace with correct mmc name and also add same-as-spl to boot order.
+
+Fixes: 0d61f8e5f1c0 ("rockchip: rk3568: add boot device detection")
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
+---
+ arch/arm/dts/rk356x-u-boot.dtsi        | 8 +++++---
+ arch/arm/mach-rockchip/rk3568/rk3568.c | 2 +-
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/dts/rk356x-u-boot.dtsi b/arch/arm/dts/rk356x-u-boot.dtsi
+index 2e358c470d..5a310d38d9 100644
+--- a/arch/arm/dts/rk356x-u-boot.dtsi
++++ b/arch/arm/dts/rk356x-u-boot.dtsi
+@@ -10,7 +10,7 @@
+ 	};
+ 
+ 	chosen {
+-		u-boot,spl-boot-order = &sdhci, &sdmmc0;
++		u-boot,spl-boot-order = "same-as-spl", &sdhci, &sdmmc0;
+ 	};
+ 
+ 	dmc: dmc {
+@@ -40,12 +40,14 @@
+ 	status = "okay";
+ };
+ 
+-&sdhci {
++&sdmmc0 {
+ 	u-boot,dm-spl;
+ 	status = "okay";
+ };
+ 
+-&sdmmc0 {
++&sdhci {
++	bus-width = <8>;
+ 	u-boot,dm-spl;
++	mmc-hs200-1_8v;
+ 	status = "okay";
+ };
+diff --git a/arch/arm/mach-rockchip/rk3568/rk3568.c b/arch/arm/mach-rockchip/rk3568/rk3568.c
+index cce3e25380..b91b5e53cb 100644
+--- a/arch/arm/mach-rockchip/rk3568/rk3568.c
++++ b/arch/arm/mach-rockchip/rk3568/rk3568.c
+@@ -45,7 +45,7 @@ enum {
+ };
+ 
+ const char * const boot_devices[BROM_LAST_BOOTSOURCE + 1] = {
+-	[BROM_BOOTSOURCE_EMMC] = "/sdhci@fe310000",
++	[BROM_BOOTSOURCE_EMMC] = "/mmc@fe310000",
+ 	[BROM_BOOTSOURCE_SPINOR] = "/spi@fe300000/flash@0",
+ 	[BROM_BOOTSOURCE_SD] = "/mmc@fe2b0000",
+ };
+-- 
+2.34.1
+

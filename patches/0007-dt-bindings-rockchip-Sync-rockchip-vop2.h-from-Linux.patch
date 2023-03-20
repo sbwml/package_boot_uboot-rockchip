@@ -1,0 +1,39 @@
+From 1b647e9dad68879b9cfa7b5620f6b98fb680a082 Mon Sep 17 00:00:00 2001
+From: Jagan Teki <jagan@amarulasolutions.com>
+Date: Fri, 17 Feb 2023 17:28:35 +0530
+Subject: [PATCH 07/11] dt-bindings: rockchip: Sync rockchip, vop2.h from Linux
+
+Sync rockchip,vop2.h from linux-next, and the last commit is
+
+commit <604be85547ce> ("drm/rockchip: Add VOP2 driver")
+
+Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ include/dt-bindings/soc/rockchip,vop2.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
+
+diff --git a/include/dt-bindings/soc/rockchip,vop2.h b/include/dt-bindings/soc/rockchip,vop2.h
+new file mode 100644
+index 0000000000..6e66a802b9
+--- /dev/null
++++ b/include/dt-bindings/soc/rockchip,vop2.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
++
++#ifndef __DT_BINDINGS_ROCKCHIP_VOP2_H
++#define __DT_BINDINGS_ROCKCHIP_VOP2_H
++
++#define ROCKCHIP_VOP2_EP_RGB0	1
++#define ROCKCHIP_VOP2_EP_HDMI0	2
++#define ROCKCHIP_VOP2_EP_EDP0	3
++#define ROCKCHIP_VOP2_EP_MIPI0	4
++#define ROCKCHIP_VOP2_EP_LVDS0	5
++#define ROCKCHIP_VOP2_EP_MIPI1	6
++#define ROCKCHIP_VOP2_EP_LVDS1	7
++
++#endif /* __DT_BINDINGS_ROCKCHIP_VOP2_H */
+-- 
+2.34.1
+
