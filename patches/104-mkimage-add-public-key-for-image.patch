@@ -1,6 +1,6 @@
 --- a/include/image.h
 +++ b/include/image.h
-@@ -1177,21 +1177,6 @@ int fit_image_hash_get_value(const void *fit, int noffset, uint8_t **value,
+@@ -1181,21 +1181,6 @@ int fit_image_hash_get_value(const void *fit, int noffset, uint8_t **value,
  
  int fit_set_timestamp(void *fit, int noffset, time_t timestamp);
  
@@ -24,7 +24,7 @@
  		    const char *engine_id, const char *cmdname);
 --- a/tools/fit_image.c
 +++ b/tools/fit_image.c
-@@ -59,9 +59,6 @@ static int fit_add_file_data(struct image_tool_params *params, size_t size_inc,
+@@ -61,9 +61,6 @@ static int fit_add_file_data(struct image_tool_params *params, size_t size_inc,
  		ret = fit_set_timestamp(ptr, 0, time);
  	}
  
@@ -34,8 +34,6 @@
  	if (!ret) {
  		ret = fit_cipher_data(params->keydir, dest_blob, ptr,
  				      params->comment,
-diff --git a/tools/image-host.c b/tools/image-host.c
-index 4e0512be63..868a47af04 100644
 --- a/tools/image-host.c
 +++ b/tools/image-host.c
 @@ -14,9 +14,6 @@

@@ -12,14 +12,6 @@
 		ethernet0 = &gmac0;
 	};
 
-	fan: pwm-fan {
-		compatible = "pwm-fan";
-		cooling-levels = <0 18 102 170 255>;
-		#cooling-cells = <2>;
-		fan-supply = <&vcc5v0_sysp>;
-		pwms = <&pwm0 0 50000 0>;
-	};
-
 	gpio-key {
 		compatible = "gpio-key";
 		pinctrl-names = "default";
