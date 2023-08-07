@@ -15,7 +15,7 @@
  CHECK		= sparse
  
  CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
-@@ -1997,29 +1991,9 @@ dtbs_install:
+@@ -2003,29 +1997,9 @@ dtbs_install:
  
  endif
  

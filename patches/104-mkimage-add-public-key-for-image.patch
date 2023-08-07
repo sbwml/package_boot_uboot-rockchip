@@ -1,6 +1,6 @@
 --- a/include/image.h
 +++ b/include/image.h
-@@ -1181,21 +1181,6 @@ int fit_image_hash_get_value(const void *fit, int noffset, uint8_t **value,
+@@ -1182,21 +1182,6 @@ int fit_image_hash_get_value(const void *fit, int noffset, uint8_t **value,
  
  int fit_set_timestamp(void *fit, int noffset, time_t timestamp);
  

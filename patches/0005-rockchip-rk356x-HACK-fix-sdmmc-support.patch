@@ -1,7 +1,7 @@
-From 2ec81f471c92d2d118c2bd31334726d3077e8a7e Mon Sep 17 00:00:00 2001
+From 77cec07e994306f9bf16303ad79ba54022d97d5c Mon Sep 17 00:00:00 2001
 From: Peter Geis <pgwipeout@gmail.com>
 Date: Sun, 19 Dec 2021 18:52:18 -0500
-Subject: [PATCH 7/7] rockchip: rk356x: HACK: fix sdmmc support
+Subject: [PATCH 5/5] rockchip: rk356x: HACK: fix sdmmc support
 
 HACK: lock mmc0 to initial frequency and disable dw-mmc control of power
 line.
@@ -36,5 +36,5 @@ index 5085a3b4..3d3fc751 100644
  	if (!dwmci_wait_reset(host, DWMCI_RESET_ALL)) {
  		debug("%s[%d] Fail-reset!!\n", __func__, __LINE__);
 -- 
-2.34.1
+2.34.8
 
