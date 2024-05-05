@@ -3,7 +3,6 @@
 # See /LICENSE for more information.
 #
 include $(TOPDIR)/rules.mk
-include $(INCLUDE_DIR)/kernel.mk
 
 PKG_VERSION:=2023.04
 PKG_RELEASE:=1
@@ -14,6 +13,7 @@ PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
 include $(INCLUDE_DIR)/u-boot.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/kernel.mk
 include ../arm-trusted-firmware-rockchip/atf-version.mk
 
 define U-Boot/Default
