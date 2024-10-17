@@ -15,7 +15,7 @@
  CHECK		= sparse
  
  CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
-@@ -2009,29 +2003,9 @@ dtbs_install:
+@@ -2049,29 +2043,9 @@ dtbs_install:
  
  endif
  
@@ -48,7 +48,7 @@
  quiet_cmd_cpp_lds = LDS     $@
 --- a/doc/build/gcc.rst
 +++ b/doc/build/gcc.rst
-@@ -138,27 +138,6 @@ Further important build parameters are
+@@ -166,27 +166,6 @@ Further important build parameters are
  * O=<dir> - generate all output files in directory <dir>, including .config
  * V=1 - verbose build
  
@@ -109,7 +109,7 @@
  	exit 1
  fi
  
--if ! which $dtc >/dev/null ; then
+-if ! which $dtc > /dev/null 2>&1 ; then
 -	echo "Error: Cannot find dtc: $dtc"
 -	exit 1
 -fi
