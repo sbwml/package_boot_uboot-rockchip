@@ -4,10 +4,10 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_VERSION:=2025.04
+PKG_VERSION:=2025.07
 PKG_RELEASE:=1
 
-PKG_HASH:=439d3bef296effd54130be6a731c5b118be7fddd7fcc663ccbc5fb18294d8718
+PKG_HASH:=0f933f6c5a426895bf306e93e6ac53c60870e4b54cda56d95211bec99e63bec7
 
 PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
@@ -93,13 +93,31 @@ define U-Boot/nanopi-r5s-rk3568
 endef
 
 
+# RK3576 boards
+
+define U-Boot/Default/rk3576
+  BUILD_SUBTARGET:=armv8
+  DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3576
+  ATF:=$(RK3576_ATF)
+  DDR:=$(RK3576_DDR)
+endef
+
+define U-Boot/nanopi-r76s-rk3576
+  $(U-Boot/Default/rk3568)
+  NAME:=FriendlyARM NanoPi R76S
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r76s
+endef
+
+
 UBOOT_TARGETS := \
   nanopi-r4s-rk3399 \
   rock-pi-4-rk3399 \
   rockpro64-rk3399 \
   nanopi-r2s-rk3328 \
   nanopi-r5c-rk3568 \
-  nanopi-r5s-rk3568
+  nanopi-r5s-rk3568 \
+  nanopi-r76s-rk3768
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
