@@ -93,13 +93,31 @@ define U-Boot/nanopi-r5s-rk3568
 endef
 
 
+# RK3576 boards
+
+define U-Boot/Default/rk3576
+  BUILD_SUBTARGET:=armv8
+  DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3576
+  ATF:=$(RK3576_ATF)
+  DDR:=$(RK3576_DDR)
+endef
+
+define U-Boot/nanopi-r76s-rk3576
+  $(U-Boot/Default/rk3576)
+  NAME:=FriendlyARM NanoPi R76S
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r76s
+endef
+
+
 UBOOT_TARGETS := \
   nanopi-r4s-rk3399 \
   rock-pi-4-rk3399 \
   rockpro64-rk3399 \
   nanopi-r2s-rk3328 \
   nanopi-r5c-rk3568 \
-  nanopi-r5s-rk3568
+  nanopi-r5s-rk3568 \
+  nanopi-r76s-rk3576
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
