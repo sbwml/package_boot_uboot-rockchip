@@ -103,7 +103,7 @@ define U-Boot/Default/rk3576
 endef
 
 define U-Boot/nanopi-r76s-rk3576
-  $(U-Boot/Default/rk3568)
+  $(U-Boot/Default/rk3576)
   NAME:=FriendlyARM NanoPi R76S
   BUILD_DEVICES:= \
     friendlyarm_nanopi-r76s
@@ -117,7 +117,7 @@ UBOOT_TARGETS := \
   nanopi-r2s-rk3328 \
   nanopi-r5c-rk3568 \
   nanopi-r5s-rk3568 \
-  nanopi-r76s-rk3768
+  nanopi-r76s-rk3576
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
@@ -136,6 +136,7 @@ define Build/InstallDev
 ifneq ($(DDR),)
 	$(CP) $(PKG_BUILD_DIR)/idbloader.img $(STAGING_DIR_IMAGE)/$(BUILD_VARIANT)-idbloader.img
 	$(CP) $(PKG_BUILD_DIR)/u-boot.itb $(STAGING_DIR_IMAGE)/$(BUILD_VARIANT)-u-boot.itb
+	$(CP) $(PKG_BUILD_DIR)/u-boot-rockchip.bin $(STAGING_DIR_IMAGE)/$(BUILD_VARIANT)-u-boot-rockchip.bin
 else
 	$(STAGING_DIR_IMAGE)/loaderimage --pack --uboot $(PKG_BUILD_DIR)/u-boot-dtb.bin $(PKG_BUILD_DIR)/uboot.img 0x200000
 	$(CP) $(PKG_BUILD_DIR)/uboot.img $(STAGING_DIR_IMAGE)/$(BUILD_VARIANT)-uboot.img
