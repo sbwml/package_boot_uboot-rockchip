@@ -1,4 +1,4 @@
-## uboot-rockchip - rk3328/rk3399/rk3568
+## uboot-rockchip - rk3328/rk3399/rk3568/rk3576
 
 Replace on openwrt source code
 

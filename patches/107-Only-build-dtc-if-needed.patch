@@ -1,10 +1,9 @@
 --- a/Makefile
 +++ b/Makefile
-@@ -414,13 +414,7 @@ PERL		= perl
- PYTHON		?= python
+@@ -467,12 +467,7 @@ PYTHON		= python
  PYTHON2		= python2
- PYTHON3		?= python3
--
+ PYTHON3		= python3
+ 
 -# The devicetree compiler and pylibfdt are automatically built unless DTC is
 -# provided. If DTC is provided, it is assumed the pylibfdt is available too.
 -DTC_INTREE	:= $(objtree)/scripts/dtc/dtc
@@ -15,7 +14,7 @@
  CHECK		= sparse
  
  CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
-@@ -2073,29 +2067,9 @@ dtbs_install:
+@@ -2312,29 +2307,9 @@ endif
  
  endif
  
