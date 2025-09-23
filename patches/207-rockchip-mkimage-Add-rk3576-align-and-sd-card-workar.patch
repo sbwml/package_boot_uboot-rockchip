@@ -1,0 +1,97 @@
+From f63713d16f2363e5b550199530d88ea78bfbe94e Mon Sep 17 00:00:00 2001
+From: Jonas Karlman <jonas@kwiboo.se>
+Date: Tue, 28 Jan 2025 01:30:12 +0000
+Subject: [PATCH 7/7] rockchip: mkimage: Add rk3576 align and sd-card
+ workaround
+
+The BootROM on RK3576 has an issue loading boot images from an SD-card.
+This issue can be worked around by injecting an initial boot image
+before TPL that:
+
+  writel(0x3ffff800, 0x3ff803b0)
+
+Prepend an image containing binary code that does this and return to
+BootROM to load next image, TPL.
+
+TODO: embed the binary code into rkcommon.c
+
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+---
+ Makefile             |  9 ++++++++-
+ tools/rk3576-boost.c | 17 +++++++++++++++++
+ tools/rkcommon.c     | 18 +++++++++++++++++-
+ 3 files changed, 42 insertions(+), 2 deletions(-)
+ create mode 100644 tools/rk3576-boost.c
+
+--- a/Makefile
++++ b/Makefile
+@@ -703,7 +703,14 @@ endif
+ # command line.
+ # This allow a user to issue only 'make' to build a kernel including modules
+ # Defaults to vmlinux, but the arch makefile usually adds further targets
+-all: u-boot
++all: tools/rk3576-boost.bin u-boot
++
++tools/rk3576-boost.bin: tools/rk3576-boost.c
++	$(CC) -nostdlib -ffreestanding -Os -c -o tools/rk3576-boost.o tools/rk3576-boost.c
++	$(OBJCOPY) -O binary -j .text tools/rk3576-boost.o tools/rk3576-boost.bin
++
++clean:
++	rm -f tools/rk3576-boost.o tools/rk3576-boost.bin
+ 
+ CFLAGS_GCOV	:= -fprofile-arcs -ftest-coverage \
+ 	$(call cc-option,-fno-tree-loop-im) \
+--- /dev/null
++++ b/tools/rk3576-boost.c
+@@ -0,0 +1,17 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++// Copyright Contributors to the U-Boot project.
++
++#include <stdint.h>
++
++#define SYS_SRAM_BASE	0x3ff80000
++#define OFFSET		0x03b0
++
++int _start(void)
++{
++	uint32_t *sram = (void*)(SYS_SRAM_BASE + OFFSET);
++
++	/* set unknown value in sram to fix boot from sdmmc */
++	*(sram) = 0x3ffff800;
++
++	return 0;
++}
+--- a/tools/rkcommon.c
++++ b/tools/rkcommon.c
+@@ -143,7 +143,7 @@ static struct spl_info spl_infos[] = {
+ 	{ "rv1126", "110B", 0x10000 - 0x1000, false, RK_HEADER_V1 },
+ 	{ "rk3528", "RK35", 0x10000 - 0x1000, false, RK_HEADER_V2 },
+ 	{ "rk3568", "RK35", 0x10000 - 0x1000, false, RK_HEADER_V2 },
+-	{ "rk3576", "RK35", 0x80000 - 0x1000, false, RK_HEADER_V2 },
++	{ "rk3576", "RK35", 0x80000 - 0x1000, false, RK_HEADER_V2, 8 },
+ 	{ "rk3588", "RK35", 0x100000 - 0x1000, false, RK_HEADER_V2 },
+ };
+ 
+@@ -271,6 +271,22 @@ int rkcommon_check_params(struct image_t
+ 		return EXIT_FAILURE;
+ 	}
+ 
++	if (!strcmp(params->imagename, "rk3576")) {
++		size = rkcommon_get_aligned_filesize(params, "tools/rk3576-boost.bin");
++		if (size < 0)
++			return EXIT_SUCCESS;
++
++		for (i = ARRAY_SIZE(spl_params.images) - 1; i > 0; i--) {
++			spl_params.images[i] = spl_params.images[i - 1];
++		}
++
++		spl_params.images[0].file = "tools/rk3576-boost.bin";
++		spl_params.images[0].size = size;
++
++		spl_params.images[0].address = 0x3ffc0000;
++		spl_params.images[1].address = 0x3ff81000;
++	}
++
+ 	return EXIT_SUCCESS;
+ 
+ err_spl_info:
