@@ -4,10 +4,10 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_VERSION:=2025.10-rc4
+PKG_VERSION:=2025.10
 PKG_RELEASE:=1
 
-PKG_HASH:=a30574d74a4a761ed683a2b74d938ddb89e3ffacc3b2a6aabf3f40be91d03ebe
+PKG_HASH:=b4f032848e56cc8f213ad59f9132c084dbbb632bc29176d024e58220e0efdf4a
 
 PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
