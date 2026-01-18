@@ -14,7 +14,7 @@
  CHECK		= sparse
  
  CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
-@@ -2312,29 +2307,9 @@ endif
+@@ -2321,29 +2316,9 @@ endif
  
  endif
  

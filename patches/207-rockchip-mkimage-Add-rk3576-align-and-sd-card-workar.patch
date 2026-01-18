@@ -25,7 +25,7 @@ Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
 --- a/Makefile
 +++ b/Makefile
-@@ -703,7 +703,14 @@ endif
+@@ -704,7 +704,14 @@ endif
  # command line.
  # This allow a user to issue only 'make' to build a kernel including modules
  # Defaults to vmlinux, but the arch makefile usually adds further targets
@@ -63,7 +63,7 @@ Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 +}
 --- a/tools/rkcommon.c
 +++ b/tools/rkcommon.c
-@@ -143,7 +143,7 @@ static struct spl_info spl_infos[] = {
+@@ -159,7 +159,7 @@ static struct spl_info spl_infos[] = {
  	{ "rv1126", "110B", 0x10000 - 0x1000, false, RK_HEADER_V1 },
  	{ "rk3528", "RK35", 0x10000 - 0x1000, false, RK_HEADER_V2 },
  	{ "rk3568", "RK35", 0x10000 - 0x1000, false, RK_HEADER_V2 },
@@ -72,7 +72,7 @@ Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
  	{ "rk3588", "RK35", 0x100000 - 0x1000, false, RK_HEADER_V2 },
  };
  
-@@ -271,6 +271,22 @@ int rkcommon_check_params(struct image_t
+@@ -287,6 +287,22 @@ int rkcommon_check_params(struct image_t
  		return EXIT_FAILURE;
  	}
  

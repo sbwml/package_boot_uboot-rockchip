@@ -50,7 +50,7 @@ Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
  	struct image_entry images[4];
  	uint8_t reserved2[1064];
  	uint8_t hash[512];
-@@ -493,6 +497,18 @@ static void rkcommon_print_header_v2(con
+@@ -509,6 +513,18 @@ static void rkcommon_print_header_v2(con
  
  	printf("Rockchip Boot Image (v2)\n");
  

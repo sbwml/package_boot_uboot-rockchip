@@ -24,7 +24,7 @@ Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 +++ b/arch/arm/mach-rockchip/Makefile
 @@ -15,13 +15,13 @@ obj-tpl-$(CONFIG_ROCKCHIP_PX30) += px30-
  
- obj-spl-$(CONFIG_ROCKCHIP_RK3036) += rk3036-board-spl.o
+ obj-spl-$(CONFIG_ROCKCHIP_RK3036) += rk3036-board-spl.o spl_common.o
  
 -ifeq ($(CONFIG_XPL_BUILD)$(CONFIG_TPL_BUILD),)
 -

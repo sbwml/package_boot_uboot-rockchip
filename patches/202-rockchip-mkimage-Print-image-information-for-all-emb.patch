@@ -34,7 +34,7 @@ Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
 --- a/tools/rkcommon.c
 +++ b/tools/rkcommon.c
-@@ -333,8 +333,6 @@ static void rkcommon_set_header0_v2(void
+@@ -349,8 +349,6 @@ static void rkcommon_set_header0_v2(void
  	uint8_t *image_ptr = NULL;
  	int i;
  
@@ -43,7 +43,7 @@ Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
  	memset(buf, '\0', RK_INIT_OFFSET * RK_BLK_SIZE);
  	hdr->magic = cpu_to_le32(RK_MAGIC_V2);
  	hdr->boot_flag = cpu_to_le32(HASH_SHA256);
-@@ -488,6 +486,29 @@ int rkcommon_verify_header(unsigned char
+@@ -504,6 +502,29 @@ int rkcommon_verify_header(unsigned char
  	return -ENOENT;
  }
  
@@ -73,7 +73,7 @@ Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
  void rkcommon_print_header(const void *buf, struct image_tool_params *params)
  {
  	struct header0_info header0;
-@@ -504,8 +525,7 @@ void rkcommon_print_header(const void *b
+@@ -520,8 +541,7 @@ void rkcommon_print_header(const void *b
  			return;
  		}
  
@@ -83,7 +83,7 @@ Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
  	} else {
  		ret = rkcommon_parse_header(buf, &header0, &spl_info);
  
-@@ -523,15 +543,16 @@ void rkcommon_print_header(const void *b
+@@ -539,15 +559,16 @@ void rkcommon_print_header(const void *b
  		boot_size = le16_to_cpu(header0.init_boot_size) * RK_BLK_SIZE -
  			    init_size;
  
